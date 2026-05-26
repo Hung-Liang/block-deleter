@@ -1,36 +1,36 @@
-import {App, PluginSettingTab, Setting} from "obsidian";
-import MyPlugin from "./main";
+import { App, PluginSettingTab, Setting } from "obsidian";
+import BlockDeleterPlugin from "./main";
 
-export interface MyPluginSettings {
-	mySetting: string;
+export interface BlockDeleterSettings {
+    dividerString: string;
 }
 
-export const DEFAULT_SETTINGS: MyPluginSettings = {
-	mySetting: 'default'
+export const DEFAULT_SETTINGS: BlockDeleterSettings = {
+    dividerString: '-----'
 }
 
-export class SampleSettingTab extends PluginSettingTab {
-	plugin: MyPlugin;
+export class BlockDeleterSettingTab extends PluginSettingTab {
+    plugin: BlockDeleterPlugin;
 
-	constructor(app: App, plugin: MyPlugin) {
-		super(app, plugin);
-		this.plugin = plugin;
-	}
+    constructor(app: App, plugin: BlockDeleterPlugin) {
+        super(app, plugin);
+        this.plugin = plugin;
+    }
 
-	display(): void {
-		const {containerEl} = this;
+    display(): void {
+        const { containerEl } = this;
 
-		containerEl.empty();
+        containerEl.empty();
 
-		new Setting(containerEl)
-			.setName('Settings #1')
-			.setDesc('It\'s a secret')
-			.addText(text => text
-				.setPlaceholder('Enter your secret')
-				.setValue(this.plugin.settings.mySetting)
-				.onChange(async (value) => {
-					this.plugin.settings.mySetting = value;
-					await this.plugin.saveSettings();
-				}));
-	}
+        new Setting(containerEl)
+            .setName('Divider string')
+            .setDesc('Define the string used to separate blocks for deletion.')
+            .addText(text => text
+                .setPlaceholder('e.g., -----')
+                .setValue(this.plugin.settings.dividerString)
+                .onChange(async (value) => {
+                    this.plugin.settings.dividerString = value;
+                    await this.plugin.saveSettings();
+                }));
+    }
 }

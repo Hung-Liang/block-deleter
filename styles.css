@@ -1,8 +1,26 @@
-/*
+.block-delete-btn {
+    cursor: pointer;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    font-weight: normal;
+    user-select: none;
+    
+    position: absolute;
+    /* Adjusted right position to compensate for the new padding */
+    right: 0px; 
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    
+    /* Crucial for mobile: Increase the invisible touch target area */
+    padding: 12px 15px; 
+    
+    transition: color 0.15s ease-in-out, transform 0.1s;
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
-
-If your plugin does not need CSS, delete this file.
-
-*/
+.block-delete-btn:hover {
+    color: var(--text-normal);
+    transform: translateY(-50%) scale(1.1);
+}
